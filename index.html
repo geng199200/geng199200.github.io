@@ -244,6 +244,197 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://361teach.com/2018/04/21/iOS内购漫漫审核路/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Lei's">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fq8t0gdau6j31kw16r7fo.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Lei's Blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Lei's Blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/04/21/iOS内购漫漫审核路/" itemprop="url">
+                  iOS内购漫漫审核路
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-21T15:21:30+08:00">
+                2018-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/21/iOS内购漫漫审核路/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/04/21/iOS内购漫漫审核路/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="写在前面的话"><a href="#写在前面的话" class="headerlink" title="写在前面的话"></a>写在前面的话</h2><blockquote>
+<p> 路漫漫其修远兮 吾将上下而求索…<br>因为今年有生宝宝的打算，而我上班的地方在南京西路，上班有点远，所以就打算换家张江这边的公司，年前面了三家，第一家沪江，面试的时候准备不是很充足，卡在了算法及架构方面的知识上了，第二家360旗下的360医药，面试了4论，最后面CTO面，未知原因卡在了这里，第三家一家小的创业公司，拿到offer年后入职，过了年之后我才发现，坑，大坑，乃至天坑，公司从17年6月份到现在没有更新过一次版本，项目写的真是无力吐槽，各种汉字命名，各种不知何种用意变量存取，卡顿，崩溃。。。。<br>   扯远了^^因为公司项目是关于足球足彩的，所以之前一直隐藏了三方支付功能，然后之前的开发者一直头铁，不做处理，导致后来提审一次需要20天至一个月的等待，我三月份入职之后本是想放弃之前的代码，重构，但是看着老板那着急的眼神，以及即将到来的世界杯，所以就决定在之前项目基础上把三方支付去掉改为内购试一次。此为前话。    </p>
+</blockquote>
+<h2 id="内购准备工作"><a href="#内购准备工作" class="headerlink" title="内购准备工作"></a>内购准备工作</h2><p>   苹果内购对于开发者和使用者来讲，都不算是一种友好的交互方式，更别提苹果爸爸百分之三十的抽成，以及不可随心所欲的定价。首先我们要了解内购的原理，然后就是做好内购前的准备工作，由于网上教程很多，在这里我只记录流程，和应该注意的地方。<br>  为了更好的了解内购流程，我画了一张图，哎呦在mac上用触控板画图真的是费了老鼻子劲了，将就着看吧<br>  <img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqkd2w82y3j314m0ts3z6.jpg" alt=""><br>  <strong>注意这里有个地方需要着重说一下</strong></p>
+<blockquote>
+<p>执行第6步之后，苹果已经将购买凭证发送到本地，此时我们需要将购买凭证存贮到本地，以防止将凭证上传给服务器，或者服务器下发支付结果时出错。    </p>
+</blockquote>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];</div><div class="line">  NSData *receipt = [NSData dataWithContentsOfURL:receiptURL];</div><div class="line">  <span class="keyword">if</span> (!receipt) &#123; <span class="comment">/* No local receipt -- handle the error. */</span></div><div class="line">      [SVProgressHUD showSuccessWithStatus:@<span class="string">"本地数据不存在"</span>];</div><div class="line">      <span class="keyword">return</span>;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  NSString *base64_receipt = [receipt base64EncodedStringWithOptions:<span class="number">0</span>];</div><div class="line">  [ArchiveFile savePurchaseProof:@&#123;@<span class="string">"base64_receipt"</span>:PARAM_IS_NIL_ERROR(base64_receipt), @<span class="string">"orderID"</span>:PARAM_IS_NIL_ERROR(self.orderID), @<span class="string">"amount"</span>:PARAM_IS_NIL_ERROR(self.amount)&#125;];</div></pre></td></tr></table></figure>
+<ul>
+<li>存储代码在这里     <strong> “In_App_Purchase_Path”为指定路径及文件类型</strong>    <pre><code class="java">+ (BOOL)savePurchaseProof:(id)proof {
+  NSMutableArray *recordArray = [ArchiveFile getDataWithPath:In_App_Purchase_Path];
+  [recordArray addObject:proof];
+ <span class="keyword">return</span> [ArchiveFile saveDataWithPath:In_App_Purchase_Path data:recordArray]; }
+</code></pre>
+</li>
+<li><p>当程序启动的时候先取出本地的购买凭证，如果有，则用后台线程遍历去验证.<br><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fqke6tlecoj31b00eqt98.jpg" alt="">    </p>
+<h2 id="内购中另外一个需要注意的地方就是设置商品的类型，先放一张图给各位了解一下"><a href="#内购中另外一个需要注意的地方就是设置商品的类型，先放一张图给各位了解一下" class="headerlink" title="内购中另外一个需要注意的地方就是设置商品的类型，先放一张图给各位了解一下"></a>内购中另外一个需要注意的地方就是设置商品的类型，先放一张图给各位了解一下</h2><p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fqked6t0fbj312w0tmjsn.jpg" alt=""></p>
+<ul>
+<li><p>我们第一次被拒<br><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fqkefl1aqpj312u0ju751.jpg" alt=""></p>
+<blockquote>
+<p>此处有一句<strong>MMP</strong>不知当讲不当讲，苹果爸爸找都懒得找，直接给打回了，于是乎，我就赶紧录了一个视频上传，然后用中文回复，然后期待着。。。 </p>
+<blockquote>
+<p>188元使用7天和18元解锁本场的商品入口我们在附加文件里添加了视频演示,如果有问题请尽快联系我们，谢谢.   </p>
+</blockquote>
+</blockquote>
+</li>
+<li><p>果不其然，第二次被拒来了<br><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqkepdc5u4j313a0lat9y.jpg" alt="">    </p>
+<blockquote>
+<p>这就是上面我提到的，一定要找准属于自己的商品类型，此处苹果建议哦不对是要求我们18元解锁本场，不应该使用非续期订阅，而应该使用非消耗性产品，并且有一点比坑的是敲黑板了啊<strong>(Note: The product type cannot be changed once an in-app purchase product has been created. Therefore, you will need to create a new in-app purchase product with the correct product type)</strong>简言之就是创建过的产品不可更改，且产品ID不可在用。这尼玛，于是乎按照苹果爸爸要求重新定义产品类型，&lt;并且我想在我们的产品推荐中也有单次购买，应该也是非消耗性，然后我就悄悄的也改成了非消耗性&gt;，并将产品ID发给后台更换，重新部署到线上，打包上传，开始了又一次的期待。。。     </p>
+</blockquote>
+</li>
+<li>在这里有一点很欣慰的是，之前一次提交需要等二十天至一个月，而这次隔天就有消息了，但是是被拒的消息。<br><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fqkf4sfsm4j312w0lqab5.jpg" alt="">    <blockquote>
+<p>这这这这。。。。。。这就尴尬了，本来之前定义的就是消耗性，上次被拒我把单场购买都统一改成了<strong>非消耗性</strong>然鹅。。。哎都是泪，赶紧改回来，并且之前的产品ID又不可用了，只能重新定义，重新给后台更换部署。。。并且还赔上两杯一点点。并且把老夫那蹩脚的英语都给逼了出来了，给苹果的回复如下.    </p>
+<blockquote>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fqkfaekaq8j312w0bw3yo.jpg" alt=""></p>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="隔天一大早醒来赶紧打开itunesConnect，（Pending-Developer-Release）简直两眼泪汪汪呀。时隔10个月之后公司的产品在次上线这次内购的上线心的就是要与苹果建立起良好的沟通，并且按照他的要求，切不可硬着头皮去挑战人家的极限。"><a href="#隔天一大早醒来赶紧打开itunesConnect，（Pending-Developer-Release）简直两眼泪汪汪呀。时隔10个月之后公司的产品在次上线这次内购的上线心的就是要与苹果建立起良好的沟通，并且按照他的要求，切不可硬着头皮去挑战人家的极限。" class="headerlink" title="隔天一大早醒来赶紧打开itunesConnect，（Pending Developer Release）简直两眼泪汪汪呀。时隔10个月之后公司的产品在次上线这次内购的上线心的就是要与苹果建立起良好的沟通，并且按照他的要求，切不可硬着头皮去挑战人家的极限。"></a>隔天一大早醒来赶紧打开itunesConnect，<strong>（Pending Developer Release）</strong>简直两眼泪汪汪呀。时隔10个月之后公司的产品在次上线这次内购的上线心的就是要与苹果建立起良好的沟通，并且按照他的要求，切不可硬着头皮去挑战人家的极限。</h3>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://361teach.com/2018/04/15/Python开发环境破解/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -593,7 +784,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -602,7 +793,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -611,7 +802,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
