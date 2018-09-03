@@ -387,8 +387,30 @@
 <p>   所谓源代码文件也就是你的工程文件路径，可以打开Terminal将文件夹拖入copy即可。</p>
 <p>   例如： <code>/Users/leiMac/Desktop/project/gunqiu/1.0\ 2/GQZhiBo/GQZhiBo</code><br>   如果<code>xcodeproj</code>和你的源代码在同一路径下，需要将路径指定到你的源代码文件夹下。<br>   <img src="https://ws3.sinaimg.cn/large/0069RVTdgy1fuw71xzmjcj30ni0fyaa7.jpg" alt=""></p>
 <p>2.2 修改工程名</p>
-<pre><code>`-modifyProjectName [原名称]&gt;[新名称]`
-</code></pre>
+<p>   -modifyProjectName [原名称]&gt;[新名称] 切记原<code>xcodeproj</code>命名需要和原代码文件夹一直，否则报错</p>
+<p>  执行完之后 如果使用了pod管理工具，还需要将<code>Podfile &gt; target</code>改为修改后的名字。同时删掉<code>Pods</code>和<code>Frameworks</code>文件夹 和 <code>xxx.xcworkspace</code>执行 <code>pod install</code></p>
+<p> 手动修改<code>TARGETS</code>名字，<code>Schemes</code>名字</p>
+<p> 2.3 修改类名前缀<br> <code>-modifyClassNamePrefix /Users/leiMac/Desktop/project/gunqiu/1.0\ 2/GQZhiBo/GQZhiBo.xcodeproj GQ&gt;ZB</code></p>
+<p> 忽略文件 <code>-ignoreDirNames ThirdPart,Categoreies,Pods</code></p>
+<p>修改完成之后工程树下，文件下的类名会变为红色，删除一个就会提示从磁盘读取，还是保留当前版本，切记选择从磁盘读取，会自动帮你把新生成的文件填充上来，负责需要一个个手动替换。</p>
+<p>2.4 删除注释和空格</p>
+<p>-deleteComments </p>
+<p>2.5 修改<code>xcassets</code>图片命名</p>
+<p>-handleXcassets</p>
+<p>2.6 生成垃圾代码</p>
+<p>作者更新版本后并没有对文档进行更新，<code>-spamCodeOut [垃圾代码文件输出目录] [垃圾代码方法增加的参数名]</code>按照这个命令会报<strong>缺少垃圾代码函数调用名</strong><br>正确的命令应该是 <code>-spamCodeOut 垃圾代码文件存放目录 垃圾代码参数名 垃圾代码函数调用名 NewClass代码函数调用名</code></p>
+<h5 id="第三步另外修改图片-hash-值的方法"><a href="#第三步另外修改图片-hash-值的方法" class="headerlink" title="第三步另外修改图片 hash 值的方法"></a>第三步另外修改图片 hash 值的方法</h5><ul>
+<li>安装 ImageMagick <code>brew install imagemagick</code></li>
+<li>压缩工程目录下所有 png 文件 <code>find . -iname &quot;*.png&quot; -exec echo {} \; -exec convert {} {} \;</code></li>
+</ul>
+<hr>
+<p>代码改造中的几个tips</p>
+<ul>
+<li>上述很多步骤都是不可逆的，所以每执行成功一步赶紧commit</li>
+<li>shift+command+j 在你定位删除代码时很有帮助</li>
+<li>获取文件路径时使用Terminal</li>
+</ul>
+
           
         
       
