@@ -58,16 +58,22 @@
 
 
 
-<meta name="description" content="相信时间，相信过程.">
+<meta name="description" content="iOS规避马甲包方案
+Guideline 4.3 - DesignWe noticed that your app provides the same feature set as other apps submitted to the App Store; it simply varies in content or language, which is considered a form of">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Block循环引用">
-<meta property="og:url" content="http://361teach.com/2017/01/03/Block循环引用/index.html">
+<meta property="og:title" content="iOS规避马甲包方案">
+<meta property="og:url" content="http://361teach.com/2018/09/03/iOS规避马甲包方案/index.html">
 <meta property="og:site_name" content="Lei's Blog">
-<meta property="og:description" content="相信时间，相信过程.">
-<meta property="og:updated_time" content="2018-08-29T06:45:38.502Z">
+<meta property="og:description" content="iOS规避马甲包方案
+Guideline 4.3 - DesignWe noticed that your app provides the same feature set as other apps submitted to the App Store; it simply varies in content or language, which is considered a form of">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/0069RVTdgy1fuw6ry0uvdj31fw0seta0.jpg">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/0069RVTdgy1fuw71xzmjcj30ni0fyaa7.jpg">
+<meta property="og:updated_time" content="2018-09-03T03:38:41.217Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Block循环引用">
-<meta name="twitter:description" content="相信时间，相信过程.">
+<meta name="twitter:title" content="iOS规避马甲包方案">
+<meta name="twitter:description" content="iOS规避马甲包方案
+Guideline 4.3 - DesignWe noticed that your app provides the same feature set as other apps submitted to the App Store; it simply varies in content or language, which is considered a form of">
+<meta name="twitter:image" content="https://ws2.sinaimg.cn/large/0069RVTdgy1fuw6ry0uvdj31fw0seta0.jpg">
 
 
 
@@ -95,13 +101,13 @@
 
 
 
-  <link rel="canonical" href="http://361teach.com/2017/01/03/Block循环引用/"/>
+  <link rel="canonical" href="http://361teach.com/2018/09/03/iOS规避马甲包方案/"/>
 
 
 
 
 
-  <title> Block循环引用 | Lei's Blog </title>
+  <title> iOS规避马甲包方案 | Lei's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -243,7 +249,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://361teach.com/2017/01/03/Block循环引用/">
+  <link itemprop="mainEntityOfPage" href="http://361teach.com/2018/09/03/iOS规避马甲包方案/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Lei's">
@@ -267,7 +273,7 @@
             
             
               
-                Block循环引用
+                iOS规避马甲包方案
               
             
           </h1>
@@ -282,8 +288,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-03T16:53:53+08:00">
-                2017-01-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-03T11:38:00+08:00">
+                2018-09-03
               </time>
             
 
@@ -323,8 +329,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/01/03/Block循环引用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/03/Block循环引用/" itemprop="commentCount"></span>
+                <a href="/2018/09/03/iOS规避马甲包方案/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/09/03/iOS规避马甲包方案/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -350,7 +356,39 @@
       
 
       
-        
+        <h1 id="iOS规避马甲包方案"><a href="#iOS规避马甲包方案" class="headerlink" title="iOS规避马甲包方案"></a>iOS规避马甲包方案</h1><blockquote>
+<p>Guideline 4.3 - Design<br>We noticed that your app provides the same feature set as other apps submitted to the App Store; it simply varies in content or language, which is considered a form of spam. </p>
+<p>我们来看看这段话的中文翻译<br>我们注意到您的应用提供了与提交到App Store的其他应用相同的功能集; 它只是内容或语言不同，被认为是一种垃圾邮件.              </p>
+</blockquote>
+<p><strong>古语云：知己知彼百战不殆</strong>要解决此问题，得先了解一下<strong>AppStore</strong>的审核机制。                                              </p>
+<ul>
+<li><p>预审核阶段</p>
+<p>所谓预审核阶段就是指我们打包ipa进行上传的时候，一般这个时候要注意icon是否合规，alpha通道，build版本要大于已经上传过的版本。</p>
+</li>
+<li>机审    </li>
+<li>此处会扫描支付SDK，及马甲情况，快速审核可绕过机审。</li>
+<li><p>人工审核</p>
+<p>此处主要是审核人员对App进行体验测试，有登陆功能的需要提供测试账号。</p>
+</li>
+</ul>
+<p>了解完审核规则猜测我们的App极有可能是机审被拒的，根据网上其它同行的经验总结得知需对以下功能进行修改。</p>
+<ol>
+<li>修改工程名</li>
+<li>修改类名前缀 </li>
+<li>扫描工程中的代码，生成同等数量的 Category 文件，文件中及是同等方法数量的垃圾代码。 </li>
+<li>修改 xxx.xcassets 文件夹中的 png 资源文件名。 </li>
+<li>删除代码中的所有注释和空行。</li>
+</ol>
+<p>手动改这些工作量是很大的，所以就有了<a href="[GitHub - klaus01/KLGenerateSpamCode: iOS 马甲应用工具](https://github.com/klaus01/KLGenerateSpamCode">KLGenerateSpamCode</a>)这款神器。下面我们就用这款神器对我们的应用程序进行修改.</p>
+<h5 id="第一步先将代码clone到本地"><a href="#第一步先将代码clone到本地" class="headerlink" title="第一步先将代码clone到本地"></a>第一步先将代码clone到本地</h5><p>cd 到指定文件夹执行如下命令<br><code>git clone https://github.com/klaus01/KLGenerateSpamCode.git</code></p>
+<h5 id="第二步配置参数"><a href="#第二步配置参数" class="headerlink" title="第二步配置参数"></a>第二步配置参数</h5><p>打开<code>Xcode&gt;Product&gt;Scheme&gt;Edit Scheme</code><br><img src="https://ws2.sinaimg.cn/large/0069RVTdgy1fuw6ry0uvdj31fw0seta0.jpg" alt=""></p>
+<p><strong>注意配置中需要一步步执行，不能一次性执行完毕</strong></p>
+<p>2.1 填写源代码路径</p>
+<p>   所谓源代码文件也就是你的工程文件路径，可以打开Terminal将文件夹拖入copy即可。</p>
+<p>   例如： <code>/Users/leiMac/Desktop/project/gunqiu/1.0\ 2/GQZhiBo/GQZhiBo</code><br>   如果<code>xcodeproj</code>和你的源代码在同一路径下，需要将路径指定到你的源代码文件夹下。<br>   <img src="https://ws3.sinaimg.cn/large/0069RVTdgy1fuw71xzmjcj30ni0fyaa7.jpg" alt=""></p>
+<p>2.2 修改工程名</p>
+<pre><code>`-modifyProjectName [原名称]&gt;[新名称]`
+</code></pre>
       
     </div>
 
@@ -382,8 +420,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/03/postName/" rel="next" title="那天的你">
-                <i class="fa fa-chevron-left"></i> 那天的你
+              <a href="/2018/08/29/Block循环引用/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -391,10 +429,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/15/Python开发环境破解/" rel="prev" title="Python开发环境破解">
-                Python开发环境破解 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -426,8 +460,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/01/03/Block循环引用/"
-           data-title="Block循环引用" data-url="http://361teach.com/2017/01/03/Block循环引用/">
+      <div class="ds-thread" data-thread-key="2018/09/03/iOS规避马甲包方案/"
+           data-title="iOS规避马甲包方案" data-url="http://361teach.com/2018/09/03/iOS规避马甲包方案/">
       </div>
     
   </div>
@@ -451,8 +485,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://ws3.sinaimg.cn/large/006tNc79gy1fq8t0gdau6j31kw16r7fo.jpg"
@@ -465,7 +508,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -555,6 +598,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#iOS规避马甲包方案"><span class="nav-number">1.</span> <span class="nav-text">iOS规避马甲包方案</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一步先将代码clone到本地"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">第一步先将代码clone到本地</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二步配置参数"><span class="nav-number">1.0.0.0.2.</span> <span class="nav-text">第二步配置参数</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
