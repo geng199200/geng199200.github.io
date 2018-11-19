@@ -72,7 +72,7 @@
 注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。
 示例 1:
 1234输入: [7,1,5,3,6,4]输出: 7解释: 在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）">
-<meta property="og:updated_time" content="2018-11-16T09:12:47.823Z">
+<meta property="og:updated_time" content="2018-11-19T03:37:44.067Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数组">
 <meta name="twitter:description" content="买卖股票的最佳时机 II给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。
@@ -399,7 +399,28 @@
 <li>Swift 实现2</li>
 </ul>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">containsDuplicate</span><span class="params">(<span class="number">_</span> nums: [Int])</span></span> -&gt; <span class="type">Bool</span> &#123;</div><div class="line">    nums.sorted()</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> (<span class="number">0</span>..&lt;nums.<span class="built_in">count</span> - <span class="number">1</span> ) &#123;</div><div class="line">        <span class="keyword">if</span> nums[i] == nums[i + <span class="number">1</span>] &#123;</div><div class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+<h3 id="只出现一次的数字"><a href="#只出现一次的数字" class="headerlink" title="只出现一次的数字"></a>只出现一次的数字</h3><p>给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。</p>
+<p>说明：</p>
+<p>你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">输入: [2,2,1]</div><div class="line">输出: 1</div></pre></td></tr></table></figure>
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">输入: [4,1,2,1,2]</div><div class="line">输出: 4</div></pre></td></tr></table></figure>
+<ul>
+<li>C语言实现</li>
+</ul>
+<blockquote>
+<p>使用异或的思想解决 </p>
+<p>异或运算符∧也称XOR运算符。它的规则是若参加运算的两个二进位同号，则结果为0（假）；异号则为1（真）。即0∧0＝0，0∧1＝1，1∧1＝0</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize)</span></span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> nums[<span class="number">3</span>] = &#123;<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>&#125;;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"打印的结果是 %d\n"</span>, singleNumber(nums, <span class="number">3</span>));</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">singleNumber</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> num = <span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numsSize; i ++) &#123;</div><div class="line">		num = num ^ nums[i];</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> num;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>Swift 实现</li>
+</ul>
+<blockquote>
+<p>采用<code>NSMutableSet</code>去重发来解决<br>先判断元素在不在集合中，如果在就删除这个元素，如果不在就加入到元素中。</p>
+</blockquote>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> arr = [<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">singleNumber</span><span class="params">(<span class="number">_</span> nums: [Int])</span></span> -&gt; <span class="type">Int</span> &#123;</div><div class="line">    <span class="keyword">let</span> numSet = <span class="type">NSMutableSet</span>.<span class="keyword">init</span>()</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..&lt;nums.<span class="built_in">count</span> &#123;</div><div class="line">        <span class="keyword">if</span> numSet.<span class="built_in">contains</span>(nums[i]) &#123;</div><div class="line">            numSet.remove(nums[i])</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            numSet.add(nums[i]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">print</span>(numSet)</div><div class="line">    <span class="keyword">return</span> numSet.allObjects.first <span class="keyword">as</span>! <span class="type">Int</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">print</span>(singleNumber(arr))</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -613,7 +634,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#买卖股票的最佳时机-II"><span class="nav-number">1.</span> <span class="nav-text">买卖股票的最佳时机 II</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存在重复"><span class="nav-number">2.</span> <span class="nav-text">存在重复</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#买卖股票的最佳时机-II"><span class="nav-number">1.</span> <span class="nav-text">买卖股票的最佳时机 II</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存在重复"><span class="nav-number">2.</span> <span class="nav-text">存在重复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只出现一次的数字"><span class="nav-number">3.</span> <span class="nav-text">只出现一次的数字</span></a></li></ol></div>
             
 
           </div>
