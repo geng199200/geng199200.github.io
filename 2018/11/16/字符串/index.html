@@ -66,7 +66,7 @@
 
 C语言实现
 
-解题思想 指针发">
+解题思想 指针法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="字符串">
 <meta property="og:url" content="http://361teach.com/2018/11/16/字符串/index.html">
@@ -79,8 +79,8 @@ C语言实现
 
 C语言实现
 
-解题思想 指针发">
-<meta property="og:updated_time" content="2018-11-23T03:53:12.411Z">
+解题思想 指针法">
+<meta property="og:updated_time" content="2018-11-23T03:56:25.422Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="字符串">
 <meta name="twitter:description" content="反转字符串编写一个函数，其作用是将输入的字符串反转过来。
@@ -91,7 +91,7 @@ C语言实现
 
 C语言实现
 
-解题思想 指针发">
+解题思想 指针法">
 
 
 
@@ -382,10 +382,10 @@ C语言实现
 <ul>
 <li>C语言实现</li>
 </ul>
-<p>解题思想 指针发</p>
+<p>解题思想 指针法</p>
 <blockquote>
-<p> 由于C中并没有数组长度的api，需要我们自己计算数组的长度。字符串数组中以<code>&#39;\0&#39;</code>结尾， 新建一个指针<code>p</code>变量指向形参， 判断<code>p != &#39;\0&#39;</code> 然后 <code>p++</code> 同时用一个<code>int</code>变量记录<code>p</code>执行的次数，可知数组的长度</p>
-<p>创建两个字符指针变量<code>start = s</code>, <code>end = s + k - 1</code> ,<code>k-1</code>切记，数组下标是从0开始的。 判断 <code>start &lt; end</code> 指针变量互换。 <code>start++</code>, <code>end--</code>.</p>
+<p> 由于C中并没有数组长度的api，需要我们自己计算数组的长度。字符数组中以<code>&#39;\0&#39;</code>结尾， 新建一个指针<code>p</code>变量指向形参， 判断<code>p != &#39;\0&#39;</code> 然后 <code>p++</code> 同时用一个<code>int</code>变量记录<code>p</code>执行的次数，可知数组的长度</p>
+<p>创建两个<code>char</code>类型指针变量<code>start = s</code>, <code>end = s + k - 1</code> ,<code>k-1</code>切记，数组下标是从0开始的。 判断 <code>start &lt; end</code> 指针变量互换。 <code>start++</code>, <code>end--</code>.</p>
 <p>另一种使用指针的方式  定义一个变量<code>i = 0; i &lt; len / 2 - 1</code> 如果满足条件 使 <code>*(s+i) = *(s + len - 1 - i)</code> </p>
 </blockquote>
 <ol>
