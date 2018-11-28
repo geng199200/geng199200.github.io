@@ -70,7 +70,7 @@ Example 1:
 Given linked list – head = [4,5,1,9], which looks like following:
 Example 1:
 1234In">
-<meta property="og:updated_time" content="2018-11-27T03:21:36.807Z">
+<meta property="og:updated_time" content="2018-11-28T07:02:06.848Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="链表">
 <meta name="twitter:description" content="删除链表中的节点Write a function to delete a node (except the tail) in a singly linked list, given only access to that node.
@@ -380,6 +380,22 @@ Example 1:
 <p>删除节点，我们首先要找一个根节点，由于形参中没有给出，所以需要我们自己伪造一个 将指针变量 <code>node</code> 作为一个根节点，然后删除他之后的节点即可</p>
 </blockquote>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * struct ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     struct ListNode *next;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> ListNode *LinkList;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteNode</span><span class="params">(<span class="keyword">struct</span> ListNode* node)</span> </span>&#123;</div><div class="line">    LinkList p;</div><div class="line">    node -&gt; val = node -&gt; next -&gt; val; <span class="comment">// 将Node的下一个节点赋值给node 是为了记录删除的是那个节点</span></div><div class="line">     p = node-&gt;next;</div><div class="line">    node -&gt; next = node -&gt; next -&gt;next;</div><div class="line">    <span class="built_in">free</span>(p);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="删除链表的倒数第N个节点"><a href="#删除链表的倒数第N个节点" class="headerlink" title="删除链表的倒数第N个节点"></a>删除链表的倒数第N个节点</h3><p>给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">给定一个链表: 1-&gt;2-&gt;3-&gt;4-&gt;5, 和 n = 2.</div><div class="line"></div><div class="line">当删除了倒数第二个节点后，链表变为 1-&gt;2-&gt;3-&gt;5.</div></pre></td></tr></table></figure>
+<ul>
+<li><p>说明：<br>给定的 n 保证是有效的。</p>
+</li>
+<li><p>进阶：<br>你能尝试使用一趟扫描实现吗？</p>
+</li>
+</ul>
+<ul>
+<li>C </li>
+</ul>
+<blockquote>
+<p>实现原理<br>使用双指针的方法， 定义指针 <code>first</code> <code>sec</code>  先使<code>first</code>正向移动n个位置 然后同时移动  <code>first</code> <code>sec</code>，  当<code>first</code>next指针指向空时，<code>sec</code>指针为指向要删除元素的上一个元素。<br>例如 10 个元素 删除倒数第8个 倒数第8个即为数字3 先正向移动到<code>first</code>到 8 ，然后 <code>sec</code>移动到2。 所以要删除的元素即为2的下一个元素。<code>sec -&gt; next = sec -&gt; next -&gt; next;</code></p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * struct ListNode &#123;</div><div class="line"> *     int val;</div><div class="line"> *     struct ListNode *next;</div><div class="line"> * &#125;;</div><div class="line"> */</div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> ListNode *Node;</div><div class="line"><span class="function"><span class="keyword">struct</span> ListNode* <span class="title">removeNthFromEnd</span><span class="params">(<span class="keyword">struct</span> ListNode* head, <span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">    Node first = head;</div><div class="line">    Node sec = head;</div><div class="line">    <span class="keyword">while</span> (n-- &gt;<span class="number">0</span>) &#123;</div><div class="line">        first = first -&gt; next;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (!first) &#123;</div><div class="line">        <span class="keyword">return</span> head-&gt;next;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span> (first -&gt; next != <span class="literal">NULL</span>) &#123;</div><div class="line">        sec = sec -&gt;  next;</div><div class="line">        first = first -&gt; next;</div><div class="line">    &#125;</div><div class="line">    sec -&gt; next = sec -&gt; next -&gt; next;</div><div class="line">    <span class="keyword">return</span> head;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -597,7 +613,7 @@ Example 1:
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#删除链表中的节点"><span class="nav-number">1.</span> <span class="nav-text">删除链表中的节点</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#删除链表中的节点"><span class="nav-number">1.</span> <span class="nav-text">删除链表中的节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除链表的倒数第N个节点"><span class="nav-number">2.</span> <span class="nav-text">删除链表的倒数第N个节点</span></a></li></ol></div>
             
 
           </div>
