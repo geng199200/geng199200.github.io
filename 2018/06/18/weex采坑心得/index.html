@@ -58,16 +58,44 @@
 
 
 
-<meta name="description" content="相信时间，相信过程.">
+<meta name="description" content="weex采坑心得
+执行weex run ios命令时报错
+在此处找到解决方案 执行weexpack命令解决weex update weexpack@latest
+
+不要使用 css 中 background 属性 在移动端无效 
+
+不要设置高度 100% 也是无效
+iOS 刚启动的时候 内容往下偏移，此时并非weex编程原因，而是代码初始化的时候，iOS 代码初始化的时候会留出64的导航栏高度
+使">
 <meta property="og:type" content="article">
 <meta property="og:title" content="weex采坑心得">
 <meta property="og:url" content="http://361teach.com/2018/06/18/weex采坑心得/index.html">
 <meta property="og:site_name" content="Lei's Blog">
-<meta property="og:description" content="相信时间，相信过程.">
-<meta property="og:updated_time" content="2018-06-18T06:47:44.024Z">
+<meta property="og:description" content="weex采坑心得
+执行weex run ios命令时报错
+在此处找到解决方案 执行weexpack命令解决weex update weexpack@latest
+
+不要使用 css 中 background 属性 在移动端无效 
+
+不要设置高度 100% 也是无效
+iOS 刚启动的时候 内容往下偏移，此时并非weex编程原因，而是代码初始化的时候，iOS 代码初始化的时候会留出64的导航栏高度
+使">
+<meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1g22hhfoaqcj31gk0u0dlg.jpg">
+<meta property="og:image" content="http://361teach.com/&&&SFLOCALFILEPATH&&&36B065A7-1F7C-4336-95A6-DF5BF2EB53F2.png">
+<meta property="og:image" content="http://361teach.com/&&&SFLOCALFILEPATH&&&8730318B-856E-4812-8526-564862D26C8C.png">
+<meta property="og:updated_time" content="2019-04-14T13:33:59.766Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="weex采坑心得">
-<meta name="twitter:description" content="相信时间，相信过程.">
+<meta name="twitter:description" content="weex采坑心得
+执行weex run ios命令时报错
+在此处找到解决方案 执行weexpack命令解决weex update weexpack@latest
+
+不要使用 css 中 background 属性 在移动端无效 
+
+不要设置高度 100% 也是无效
+iOS 刚启动的时候 内容往下偏移，此时并非weex编程原因，而是代码初始化的时候，iOS 代码初始化的时候会留出64的导航栏高度
+使">
+<meta name="twitter:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1g22hhfoaqcj31gk0u0dlg.jpg">
 
 
 
@@ -350,7 +378,40 @@
       
 
       
-        
+        <h1 id="weex采坑心得"><a href="#weex采坑心得" class="headerlink" title="weex采坑心得"></a>weex采坑心得</h1><ul>
+<li><p>执行<code>weex run ios</code>命令时报错<br><img src="https://ws3.sinaimg.cn/large/006tNc79gy1g22hhfoaqcj31gk0u0dlg.jpg" alt=""></p>
+<p><a href="https://github.com/weexteam/weex-toolkit/issues/354" target="_blank" rel="external">在此处找到解决方案</a> 执行weexpack命令解决<code>weex update weexpack@latest</code></p>
+</li>
+<li><p>不要使用 css 中 background 属性 在移动端无效 </p>
+</li>
+<li>不要设置高度 100% 也是无效</li>
+<li>iOS 刚启动的时候 内容往下偏移，此时并非weex编程原因，而是代码初始化的时候，iOS 代码初始化的时候会留出64的导航栏高度</li>
+<li>使用路由之后打包编译将会是单页面</li>
+<li>单页面应用想要使用navigator跳转必须使用weex-toolkit里的compile命令进行单页面打包</li>
+<li>navigator 跳转在iOS上是真的原生导航跳转，需要提供两个路径资源</li>
+<li>使用navigator animated 一定要传字符串传bool值崩溃</li>
+<li>注册module模块 需要遵循<code>WXModuleProtocol</code>协议，并通过<code>WX_EXPORT_METHOD</code>抛出供<code>js</code>调用的方法，可以传递参数，和接受回调，<code>WXModuleCallback</code>只会回调一次,<code>WXModuleKeepAliveCallback</code>，可以回调多次，比较影响性能建议除特殊场景外，都设置为回调一次</li>
+<li>weex 打包不会打包资源图片，项目中需要将图片编辑成text，引入阿里字体库生成的文件路径即可<a href="http://weex.apache.org/cn/references/modules/dom.html" target="_blank" rel="external">官方教程</a> </li>
+<li>引入阿里字体库图片不显示的问题，<code>!important</code>去掉这个属性即可</li>
+<li>在自定义的module 中需要可以使用<code>@synthesize weexInstance;</code>拿到当前实例的相关信息</li>
+<li>自定义weex 跳转原生</li>
+<li>自定义Component  list 等需要手动算高度</li>
+<li>自定义component native 传值给 weex</li>
+<li><code>weex compile src/xxx dset -m</code> 执行编译命令的时候 组件上的.vue不能省略，否则报错 </li>
+<li>weex 页面之间传值最好走url解析,不推荐使用storage模块</li>
+<li><code>&lt;text&gt;</code>标签在iOS上编译成了textView，限制行数需要用line</li>
+<li><code>pop</code>返回刷新页面需要使用weex page事件中的 <code>viewappear</code>和<code>viewdisappear</code></li>
+<li>tabler 使用路由 子页面返回刷新问题。 使用globalEvent</li>
+<li>weex 自定义NavigatorHandle</li>
+<li>weex toolkit 升级2.0 报错解决办法<br><img src="&amp;&amp;&amp;SFLOCALFILEPATH&amp;&amp;&amp;36B065A7-1F7C-4336-95A6-DF5BF2EB53F2.png" alt=""></li>
+</ul>
+<p>执行 <code>npm i weex-toolkit@beta -g</code> 报错的话加上 <code>sudo</code>  然后执行<br><code>weex repair</code><br><img src="&amp;&amp;&amp;SFLOCALFILEPATH&amp;&amp;&amp;8730318B-856E-4812-8526-564862D26C8C.png" alt=""></p>
+<ul>
+<li>降级命令<code>sudo npm i weex-toolkit@latest -g</code>  指定#node#版本 <code>8.9.4</code>  #npm版本# <code>v4.0</code>  <code>npm i npm@4 -g</code></li>
+<li>卸载命令 <code>sudo npm uninstall -g weex-toolkit</code> <code>npm uninstall -g weex-toolkit &amp;&amp; rm -rf ~/.wx &amp;&amp; rm -rf ~/.weex_tmp</code></li>
+<li>升级npm ``</li>
+</ul>
+
       
     </div>
 
@@ -451,8 +512,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="https://ws3.sinaimg.cn/large/006tNc79gy1fq8t0gdau6j31kw16r7fo.jpg"
@@ -555,6 +625,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#weex采坑心得"><span class="nav-number">1.</span> <span class="nav-text">weex采坑心得</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
